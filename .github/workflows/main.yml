@@ -1,0 +1,14 @@
+name: AI Code Analysis
+
+on: [push, pull_request]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Analysis
+        run: |
+          docker run --rm \
+            -v $GITHUB_WORKSPACE:/code \
+            -w /code \
+            registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
