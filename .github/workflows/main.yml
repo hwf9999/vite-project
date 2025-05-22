@@ -16,4 +16,4 @@ jobs:
           docker run --rm \
             -v "${MOUNT_PATH}:/data" \
             -w /data \
-            registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
+            registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
