@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
+      credentials:
+        username: ${{ secrets.DOCKER_USERNAME }}  # 直接从 Repository secrets 读取
+        password: ${{ secrets.DOCKER_PASSWORD }}
     steps:
       - uses: actions/checkout@v4
         with:
