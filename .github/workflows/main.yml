@@ -9,6 +9,7 @@ jobs:
       - name: Run Analysis
         run: |
           docker run --rm \
-            -v $GITHUB_WORKSPACE:/code \
-            -w /code \
-            registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
+          -v $GITHUB_WORKSPACE:/code \
+          -w /code \  # 关键：设置工作目录
+          -e GIT_DISCOVERY_ACROSS_FILESYSTEM=1 \  # 允许跨文件系统查找
+          registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
