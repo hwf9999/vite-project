@@ -55,4 +55,12 @@ const timer = ref();
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
+/* @ai-start */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+/* @ai-end */
 </style>
