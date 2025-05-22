@@ -12,8 +12,12 @@ jobs:
           
       - name: Run Analysis
         run: |
+          # 关键三步曲
           docker run --rm \
-              -v "$GITHUB_WORKSPACE:/data" \
-              -w /data \
-              registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest \
-              sh -c "git config --global --add safe.directory /data && /app/entrypoint.sh"
+            -v "$GITHUB_WORKSPACE:/data" \
+            -w /data \
+            -e GIT_DISCOVERY_ACROSS_FILESYSTEM=1 \
+            -e GIT_CONFIG_COUNT=1 \
+            -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0=/data \
+            registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
