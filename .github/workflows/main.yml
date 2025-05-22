@@ -1,0 +1,13 @@
+name: AI Code Analysis
+
+on: [push, pull_request]
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    container:
+      image: registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # 必须获取前一个提交用于diff分析
