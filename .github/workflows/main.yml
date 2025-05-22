@@ -7,13 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-  
-      - name: Run Container
-        run: |
-          # 标准化路径（兼容空格和特殊字符）
-          MOUNT_PATH=$(printf "%q" "$GITHUB_WORKSPACE")
+        with:
+          fetch-depth: 2
           
+      - name: Run Analysis
+        run: |
+          # 添加安全目录例外
+          git config --global --add safe.directory /data
+          
+          # 运行分析容器
           docker run --rm \
-            -v "${MOUNT_PATH}:/data" \
+            -v "$GITHUB_WORKSPACE:/data" \
             -w /data \
+            -e GIT_DISCOVERY_ACROSS_FILESYSTEM=1 \
             registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
