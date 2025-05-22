@@ -12,12 +12,8 @@ jobs:
           
       - name: Run Analysis
         run: |
-          # 添加安全目录例外
-          git config --global --add safe.directory /data
-          
-          # 运行分析容器
           docker run --rm \
-            -v "$GITHUB_WORKSPACE:/data" \
-            -w /data \
-            -e GIT_DISCOVERY_ACROSS_FILESYSTEM=1 \
-            registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest
+              -v "$GITHUB_WORKSPACE:/data" \
+              -w /data \
+              registry.cn-hangzhou.aliyuncs.com/hewenfei/ai-analy-stats:latest \
+              sh -c "git config --global --add safe.directory /data && /app/entrypoint.sh"
