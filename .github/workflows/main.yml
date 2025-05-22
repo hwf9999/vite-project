@@ -6,10 +6,14 @@ jobs:
   analyze:
     runs-on: ubuntu-latest
     steps:
-      - name: Run Analysis
+      - uses: actions/checkout@v4
+  
+      - name: Run Container
         run: |
+          # 标准化路径（兼容空格和特殊字符）
+          MOUNT_PATH=$(printf "%q" "$GITHUB_WORKSPACE")
+          
           docker run --rm \
-          -v $GITHUB_WORKSPACE:/code \
-          -w /code \  # 关键：设置工作目录
-          -e GIT_DISCOVERY_ACROSS_FILESYSTEM=1 \  # 允许跨文件系统查找
-          registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
+            -v "${MOUNT_PATH}:/data" \
+            -w /data \
+            registry.cn-shenzhen.aliyuncs.com/runcobo/ai-code-stats:latest
