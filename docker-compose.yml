@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  frontend:
+    container_name: vite-project
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - "ENV=${ENV}"
+    ports:
+      - "8080:80"
