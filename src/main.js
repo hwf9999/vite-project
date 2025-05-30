@@ -115,3 +115,10 @@ document.addEventListener('visibilitychange', () => {
         checkUpdate()
     }
   });
+
+// @ai-start
+// 生成一段js数据去重代码
+function removeDuplicates(arr) {
+    return Array.from(new Set(arr));
+}
+// @ai-end
